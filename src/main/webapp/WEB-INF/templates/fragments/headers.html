@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html
+	xmlns:th="http://www.thymeleaf.org"
+	lang="cs"
+>
+	<head th:fragment="head(title)">
+		<title th:replace="${title}">PIA ukázka</title>
+		<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}">
+		<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/all.min.css}">
+	</head>
+	<body>
+		<nav th:fragment="nav">
+			<!--<ul>
+				 <li><h1>PIA!</h1></li>
+			</ul>-->
+			<ul>
+				
+				<li>
+					<div ><a th:href="@{/contacts}"><i class="fa fa-address-card"></i></a></div>
+        		</li>
+        		<li sec:authorize="hasRole('SECRETARY')">
+					<div ><a th:href="@{/createcontact}"><i class="fa fa-file-signature"></i></a></div>
+        		</li>
+				<li sec:authorize="isAuthenticated()">
+					<div ><a th:href="@{/invoices}"><i class="fa fa-archive"></i></a></div>
+        		</li>
+        		<li sec:authorize="hasRole('ACCOUNTANT')">
+					<div ><a th:href="@{/createinvoice}"><i class="fa fa-file-invoice"></i></a></div>
+        		</li>
+				<li sec:authorize="isAuthenticated()">
+					<div ><a th:href="@{/users}"><i class="fa fa-users-cog"></i></a></div>
+        		</li>
+        		<li sec:authorize="hasRole('ADMIN')">
+					<div ><a th:href="@{/createuser}"><i class="fa fa-user-plus"></i></a></div>
+        		</li>
+				 <li sec:authorize="isAuthenticated()">
+					<div><a th:href="@{/changepassword}"><i class="fa fa-key"></i></a></div>
+        		</li> 
+				<li sec:authorize="isAuthenticated()">
+					<div ><a th:href="@{/logout}"><i class="fa fa-power-off"></i></a></div>
+        		</li>
+        		<li sec:authorize="isAnonymous()">
+					<div ><a th:href="@{/login}"><i class="fa fa-power-off"></i></a></div>
+        		</li>
+			</ul>
+		</nav>
+		
+		<p>Hello <span th:text="${#authentication.name}"></span></p>
+	</body>
+</html>

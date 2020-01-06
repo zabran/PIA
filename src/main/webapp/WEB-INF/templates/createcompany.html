@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="cs">
+	<head th:replace="fragments/headers :: head(~{::title})">
+		<title>Create Company</title>
+	</head>
+	<body>
+	<nav th:replace="fragments/headers :: nav"></nav>
+		<h1>Create New Contact</h1>
+		
+		<p th:if="${param.error}" class="error">There already is a company with this name!</p>
+		<p  class="error" th:text=${error}></p>
+		
+		<form th:action="@{/createcompany}" th:object="${company}" method="post">
+			<table>
+			<tr>
+				<td><label for="name">Name: <span class="required">*</span></label></td>
+				<td><input type="text" th:field="*{name}" name="name" id="name" /></td>
+			</tr>
+			<tr>
+				<td><label for="email">E-mail: <span class="required">*</span></label></td>
+				<td><input type="email" th:field="*{email}" name="email" id="email" /></td>
+			</tr>
+
+			<tr>
+				<td><label for="location">Location: </label></td>
+				<td><input type="text" th:field="*{location}" name="location" id="location" /></td>
+			</tr>
+			<tr>
+				<td><label for="IC">IC: </label></td>
+				<td><input type="text" th:field="*{IC}" name="IC" id="IC" /></td>
+			</tr>
+			<tr>
+				<td><label for="DIC">DIC: </label></td>
+				<td><input type="text" th:field="*{DIC}" name="DIC" id="DIC" /></td>
+			</tr>
+			<tr>
+				<td><label for="tel">Tel. Num.: </label></td>
+				<td><input type="text" th:field="*{tel}" name="tel" id="tel" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><p><span class="required">*</span>Required field</p></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" class="btn" value="CreateCompany" /></td>
+			</tr>
+			</table>
+		</form>
+	</body>
+</html>

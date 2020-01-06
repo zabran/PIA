@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="cs">
+	<head th:replace="fragments/headers :: head(~{::title})">
+		<title>Contacts</title>
+	</head>
+	<body>
+	<nav th:replace="fragments/headers :: nav"></nav>
+		<h1>Contacts</h1>
+		
+		<table>
+    <thead>
+
+    </thead>
+    <tbody>
+    <tr>
+            <th> Name </th>
+            <th> Location </th>
+            <th >View</th>
+        </tr>
+    <tr th:if="${companies.empty}">
+            <td colspan="2"> No Contacts Available </td>
+        </tr>
+        <tr th:each="company : ${companies}">
+            <td><span th:text="${company.name}"> Name </span></td>
+              <td><span th:text="${company.location}"> Location </span></td>
+            <td><form th:action="@{/company}" th:object="${company}" method="post">
+            <div>
+				<input type="hidden" th:value="${company.id}" name="id" id="id" />
+			</div>
+			<div>
+				<button type="submit" class="btn-image" ><i class="fa fa-file-signature"></i></button>
+			</div>
+		</form></td>
+            <!--<td sec:authorize="hasRole('ADMIN')"><a th:href="@{/user}"><i class="fa fa-user-edit"></i></a></th>-->
+        </tr>
+    </tbody>
+</table>
+		
+	</body>
+</html>

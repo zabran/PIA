@@ -1,0 +1,154 @@
+body, html {
+	margin: 0 auto;
+	
+	display: block;
+	justify-content: center;
+    text-align:center;
+    /*Zajistí responzivní písmo s pevným minimem. To samé níže*/
+    font-size:calc(15px + 0.7vw);
+}
+
+nav {
+	display: flex;
+	justify-content: center;
+    text-align:center;
+}
+
+form {
+	display: flex;
+	justify-content: center;
+}
+
+table {
+	display: flex;
+	justify-content: center;
+	text-align:left;
+}
+
+/*td delší jak 1 sloupec jsou vycentrovány*/
+td[colspan]:not([colspan="1"]) {
+    text-align: center;
+}
+
+td{
+	padding-left: 0.15em;
+	padding-right: 0.15em;
+}
+
+th{
+	padding-left: 0.15em;
+	padding-right: 0.15em;
+}
+
+select {
+	justify-content: center;
+	font-size:calc(15px + 0.7vw);
+}
+
+nav ul li {
+	display: flex;
+	float: left;
+}
+
+input {
+	width: 7em;
+	font-size:calc(15px + 0.7vw);
+}
+
+/*V pøípadì, že je potøeba dlouhý input.*/
+.long{
+	width: 100%;
+}
+
+button{
+	width: 7em;
+	font-size:calc(15px + 0.7vw);
+}
+
+/*Date se na 7em nevejde.*/
+input[type=date]{
+	width:auto;
+}
+
+/*Checkboxy jsou zvìtšovat velikost jenom pøes size.*/
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  width: auto;
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+  padding: 10px;
+}
+
+@media (max-width: 600px) {
+    input[type=checkbox]
+{
+  /* 1.5-sized Checkboxes */
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  transform: scale(1.5);
+  padding: auto;
+}
+}
+
+@media (max-width: 400px) {
+    input[type=checkbox]
+{
+  /* Normal-sized Checkboxes */
+  -ms-transform: scale(1); /* IE */
+  -moz-transform: scale(1); /* FF */
+  -webkit-transform: scale(1); /* Safari and Chrome */
+  -o-transform: scale(1); /* Opera */
+  transform: scale(1);
+  padding: auto;
+}
+}
+
+/*Bìžný button. Velikost odpovídá textu.*/
+.btn{
+	width: auto;
+	justify-content: center;
+}
+
+/*Image button. Velikost odpovídá textu a background je celý prùhledný*/
+.btn-image{
+	background-color:transparent;
+	border-color: #fff;
+	border:none;
+	font-size:calc(15px + 0.7vw);
+	width: auto;
+}
+
+textarea{
+	width:100%;
+	font-size:calc(15px + 0.7vw);
+}
+
+
+nav a {
+	color: black;
+	font-size:calc(1em + 3.5vw);
+	#padding-left: 0.3em;
+	#padding-right: 0.3em;
+	margin:0.3em;
+}
+
+/*Úspìšná zmìna.*/
+.suc {
+	color: green;
+}
+
+/*Došlo k chybì.*/
+.error {
+	color: red;
+}
+
+/*Èistì pro zvýraznìní hvìzdièky u nutných položek.*/
+.required {
+  color: red;
+}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html
+	xmlns:th="http://www.thymeleaf.org"
+	lang="cs"
+>
+	<head th:replace="fragments/headers :: head(~{::title})">
+		<title>PIA Mainpage</title>
+	</head>
+	<body>
+		<nav th:replace="fragments/headers :: nav"></nav>
+		<p>Hello <span th:text="${#authentication.name}"></span></p>
+		<div sec:authorize="hasRole('USER')">You are user.</div>
+        <div sec:authorize="hasRole('ADMIN')">You are admin.</div>
+        <div sec:authorize="hasRole('ACCOUNTANT')">You are accountant.</div>
+        <div sec:authorize="hasRole('SECRETARY')">You are secretary.</div>
+	</body>
+</html>

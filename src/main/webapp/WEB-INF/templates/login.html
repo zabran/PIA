@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="cs">
+	<head th:replace="fragments/headers :: head(~{::title})">
+		<title>PIA Login</title>
+	</head>
+	<body>
+	<nav th:replace="fragments/headers :: nav"></nav>
+		<h1>Login</h1>
+		
+		<p th:if="${param.error}" class="error">Wrong user or password!</p>
+		
+		<form th:action="@{/login}" method="post">
+		<table>
+			<tr>
+				<td><label for="username">Username: </label></td>
+				<td><input type="text" name="username" id="username" /></td>
+			</tr>
+			<tr>
+				<td><label for="password">Password: </label></td>
+				<td><input type="password" name="password" id="password" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" class="btn" value="Login" /></td>
+			</tr>
+			</table>
+		</form>
+	</body>
+</html>

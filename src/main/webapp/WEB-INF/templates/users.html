@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="cs">
+	<head th:replace="fragments/headers :: head(~{::title})">
+		<title>Users</title>
+	</head>
+	<body>
+	<nav th:replace="fragments/headers :: nav"></nav>
+		<h1>Users</h1>
+		
+		<table>
+    <thead>
+        
+    </thead>
+    <tbody>
+    <tr>
+            <th> Name </th>
+            <th> Roles </th>
+            <th sec:authorize="hasRole('ADMIN')">Edit.</th>
+        </tr>
+    <tr th:if="${users.empty}">
+            <td colspan="2"> No Users Available </td>
+        </tr>
+        <tr th:each="user2 : ${users}">
+            <td><span th:text="${user2.username}"> Username </span></td>
+              <td><span th:text="${user2.roles}"> Role </span></td>
+            <td sec:authorize="hasRole('ADMIN')"><form th:action="@{/user}" th:object="${user}" method="post">
+            <div>
+
+				<input type="hidden" th:value="${user2.id}" name="id" id="id" />
+			</div>
+			<div>
+				<!--<input type="button" value="edit user" class="fa fa-user-edit"/>-->
+				<button type="submit" class="btn-image" style="background-color:transparent;border-color: #fff;border:none"><i class="fa fa-user-edit"></i></button>
+			</div>
+		</form></td>
+        </tr>
+    </tbody>
+</table>
+		
+	</body>
+</html>
