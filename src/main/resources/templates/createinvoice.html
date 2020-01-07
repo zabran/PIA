@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="cs">
+	<head th:replace="fragments/headers :: head(~{::title})">
+		<title>Create Company</title>
+	</head>
+	<body>
+	<nav th:replace="fragments/headers :: nav"></nav>
+		<h1>Create New Invoice</h1>
+		
+		<p  class="error" th:text=${error}></p>
+		
+		<form action="#" th:action="@{/createinvoice}" th:object="${invoice}" method="post">
+			<table>
+			<tr>
+			
+				<td><label  for="received">1st Company is receiving: </label></td>
+				<td><input  type="checkbox" th:field="*{received}" name="received" id="received"></td>
+			
+			</tr>
+			<tr>
+				<td><label for="Company1">1st Company <span class="required">*</span></label></td>
+				<td><select name="company1" id="company1">
+            <option th:each="company1 : ${companies}"
+                    th:value="${{company1}}"
+                    th:text="${company1.name}">
+            </option>
+        </select></td>
+			</tr>
+			<tr>
+				<td><label for="Company2">2nd Company <span class="required">*</span></label></td>
+				<td><select name="company2" id="company2">
+            <option th:each="company2 : ${companies}"
+                    th:value="${{company2}}"
+                    th:text="${company2.name}">
+            </option>
+        </select></td>
+			</tr>
+
+			<tr>
+				<!---<th>Index</th>-->
+				<th>Item</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<!---<th>Total</th>-->
+				<th>Remove</th>
+			</tr>
+                <tr>
+                  <th>Commodity:</th>
+                  <th colspan="2"><select name="selected" id="selected">
+            <option th:each="commodity : ${commodities}"
+                    th:value="${{commodity}}"
+                    th:text="${commodity.name}">
+            </option>
+        </select></th>
+                  <th>
+                    <input type="submit" class="btn" Value="AddRow" name="addRow">
+                  </th>
+                </tr>
+                
+                <tr th:each="row,rowStat : *{Commodities}">
+                  <!---<td th:text="${rowStat.count}">1</td>-->
+                  <td>
+                    <input type="text" th:field="*{Commodities[__${rowStat.index}__].commodityName}">
+                  </td>
+                  <td>
+                    <input type="number" th:field="*{Commodities[__${rowStat.index}__].price}" />
+                  </td>
+                  <td>
+                    <input type="number" th:field="*{Commodities[__${rowStat.index}__].quantity}" />
+                  </td>
+                  <td>
+                    <button type="submit" class="btn" name="removeRow" th:text="'RemoveRow'" th:value="${rowStat.index}" >RemoveRow</button>
+                  </td>
+                </tr>
+
+
+
+			<tr>
+				<td><label for="content">Description: </label></td>
+				<td colspan="4"><textarea th:field="*{content}" name="content" id="content" ></textarea></td>
+			</tr>
+			
+			<tr>
+				<td><label  for="date">Created: </label></td>
+				<td colspan="3"><input type="date" th:field="*{timeCreated}"/></td>
+			</tr>
+			<tr>
+				<td><label  for="date">Completed: </label></td>
+				<td colspan="3"><input type="date" th:field="*{timeCompleted}"/></td>
+			</tr>
+
+			<tr>
+				<td colspan="2"><p><span class="required">*</span>Required field</p></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" name="create" class="btn" value="Create" /></td>
+			</tr>
+			</table>
+		</form>
+	</body>
+</html>

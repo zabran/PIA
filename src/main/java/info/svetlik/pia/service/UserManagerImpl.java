@@ -13,6 +13,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,14 +31,14 @@ public class UserManagerImpl implements UserManager, UserDetailsService {
 	private static final String DEFAULT_USER = "admin";
 	private static final String DEFAULT_PASSWORD = "default";
 
-	private final PasswordEncoder encoder;
+	private final PasswordEncoder encoder = new BCryptPasswordEncoder() ;
 
 	private final UserRepository userRepo;
 	private final RoleRepository roleRepo;
 
 	@Autowired
-	public UserManagerImpl(PasswordEncoder encoder, UserRepository userRepo, RoleRepository roleRepo) {
-		this.encoder = encoder;
+	public UserManagerImpl(UserRepository userRepo, RoleRepository roleRepo) {
+		//this.encoder = encoder;
 		this.userRepo = userRepo;
 		this.roleRepo = roleRepo;
 	}
@@ -193,6 +194,10 @@ public class UserManagerImpl implements UserManager, UserDetailsService {
 		user = old;
 		user.setPassword(hashed);
 		this.userRepo.save(user);
+	}
+	
+	public boolean passwordMatches(User user, String password) {
+		return encoder.matches(password, user.getPassword());
 	}
 
 	@Override

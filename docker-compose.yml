@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+
+   pia:
+     image: pia/zabran:latest
+     ports:
+       - "8080:8080"
+     restart: always
+     volumes:
+       - "./db:/root"

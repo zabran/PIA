@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="cs">
+	<head th:replace="fragments/headers :: head(~{::title})">
+		<title>Company</title>
+	</head>
+	<body>
+	<nav th:replace="fragments/headers :: nav"></nav>
+		<h1 th:text="'Company '+${company.name}"></h1>
+		
+		<p th:if="${param.error}" class="error">There already is a company with this name!</p>
+		<p  class="error" th:text=${error}></p>
+		
+		<form th:action="@{/editcontact}" th:object="${company}" method="post">
+		<table>
+			<tr>
+				<input sec:authorize="hasRole('SECRETARY')" type="hidden" value="${company.id}" th:field="*{id}" name="id" id="id" />
+			</tr>
+			
+			<tr>
+				<td><label for="name">Name: <span sec:authorize="hasRole('SECRETARY')" class="required">*</span></label></td>
+				<td><label for="name" th:text="${company.name}"></label></td>
+				<td sec:authorize="hasRole('SECRETARY')"><input  type="text" th:field="*{name}" name="name" id="name" /></td>
+			</tr>
+			<tr>
+				<td><label for="email">E-mail: <span sec:authorize="hasRole('SECRETARY')" class="required">*</span></label></td>
+				<td><label for="email" th:text="${company.email}"></label></td>
+				<td sec:authorize="hasRole('SECRETARY')"><input  type="email" th:field="*{email}" name="email" id="email" /></td>
+			</tr>
+
+			<tr>
+				<td><label for="location">Location: </label></td>
+				<td><label for="location" th:text="${company.location}"></label></td>
+				<td sec:authorize="hasRole('SECRETARY')"><input  type="text" th:field="*{location}" name="location" id="location" /></td>
+			</tr>
+			<tr>
+				<td><label for="IC">IC: </label></td>
+				<td><label for="IC" th:text="${company.IC}"></label></td>
+				<td sec:authorize="hasRole('SECRETARY')"><input  th:field="*{IC}" type="text" name="IC" id="IC" /></td>
+			</tr>
+			<tr>
+				<td><label for="DIC">DIC: </label></td>
+				<td><label for="DIC" th:text="${company.DIC}"></label></td>
+				<td sec:authorize="hasRole('SECRETARY')"><input  th:field="*{DIC}" type="text" name="DIC" id="DIC" /></td>
+			</tr>
+			<tr>
+				<td><label for="tel">Tel. Num.: </label></td>
+				<td><label for="tel" th:text="${company.tel}"></label></td>
+				<td sec:authorize="hasRole('SECRETARY')"><input  th:field="*{tel}" type="text" name="tel" id="tel" /></td>
+			</tr>
+			<tr>
+				<td colspan="1" sec:authorize="hasRole('SECRETARY')"><p><span class="required">*</span>Required field</p></td>
+			</tr>
+			<tr>
+				<td><label sec:authorize="hasRole('SECRETARY')" for="password">Remove contact: </label></td>
+				<td><input sec:authorize="hasRole('SECRETARY')" type="checkbox" name="delete"></td>
+			</tr>
+			
+			<tr>
+				<td colspan="3" sec:authorize="hasRole('SECRETARY')"><input type="submit" class="btn" value="EditCompany" /></td>
+			</tr>
+			</table>
+		</form>
+	</body>
+</html>

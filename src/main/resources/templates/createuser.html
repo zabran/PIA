@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="cs">
+	<head th:replace="fragments/headers :: head(~{::title})">
+		<title>Create User</title>
+	</head>
+	<body>
+	<nav th:replace="fragments/headers :: nav"></nav>
+		<h1>Create New User</h1>
+		
+		<p th:if="${param.error}" class="error">There already is user with this username!</p>
+		<p  class="error" th:text=${error}></p>
+		
+		<form th:action="@{/createuser}" th:object="${user}" method="post">
+			
+			<table>
+			<tr>
+			 <td colspan="2">
+				<select class="form-control" th:field="*{roles}" multiple="multiple">
+    <option th:each="role : ${allRoles}"
+            th:field="*{roles}"
+            th:value="${{role}}"
+            th:text="${role.name}">Role: </option>
+</select></td>
+			</tr>
+			<tr>
+				<td><label for="email">E-mail: </label></td>
+				<td><input type="email" th:field="*{email}" name="email" id="email" /></td>
+			</tr>
+			<tr>
+				<td><label for="username">Username: <span class="required">*</span></label></td>
+				<td><input type="text" th:field="*{username}" name="username" id="username" /></td>
+			</tr>
+			<tr>
+				<td><label for="password">Password: <span class="required">*</span></label></td>
+				<td><input type="password" th:field="*{password}" name="password" id="password1" /></td>
+			</tr>
+			<tr>
+				<td><label for="password">Password: <span class="required">*</span></label></td>
+				<td><input type="password" name="password2" id="password2" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><p><span class="required">*</span>Required field</p></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" class="btn" value="CreateUser" /></td>
+			</tr>
+			</table>
+		</form>
+	</body>
+</html>

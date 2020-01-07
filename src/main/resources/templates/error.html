@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<html
+	xmlns:th="http://www.thymeleaf.org"
+	lang="cs"
+>
+	<head th:replace="fragments/headers :: head(~{::title})">
+		<title>Error</title>
+	</head>
+	<body>
+		<nav th:replace="fragments/headers :: nav"></nav>
+		<p class="error">Error: Something went wrong!</p>
+		
+	</body>
+</html>

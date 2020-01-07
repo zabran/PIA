@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="cs">
+	<head th:replace="fragments/headers :: head(~{::title})">
+		<title>Invoices</title>
+	</head>
+	<body>
+	<nav th:replace="fragments/headers :: nav"></nav>
+		<h1>Invoices</h1>
+		
+		<table>
+    <thead>
+        
+    </thead>
+    <tbody>
+    <tr>
+            <th> Compamy1 </th>
+            <th> Company2 </th>
+            <th >Time created</th>
+            <th >View</th>
+        </tr>
+    <tr th:if="${invoices.empty}">
+            <td colspan="2"> No Invoices Available </td>
+        </tr>
+        <tr th:each="invoice : ${invoices}">
+            <td><span th:text="${invoice.companyName1}"> Company1 </span></td>
+            <td><span th:text="${invoice.companyName2}"> Company2 </span></td>
+              <td><span th:text="${#dates.format(invoice.timeCreated, 'yyyy-MM-dd')}"> Time created </span></td>
+            <td><form th:action="@{/invoice}" th:object="${invoice}" method="post">
+            <div>
+				<input type="hidden" th:value="${invoice.id}" name="id" id="id" />
+			</div>
+			<div>
+				<button type="submit" class="btn-image" ><i class="fas fa-folder-open"></i></button>
+			</div>
+		</form></td>
+        </tr>
+    </tbody>
+</table>
+		
+	</body>
+</html>

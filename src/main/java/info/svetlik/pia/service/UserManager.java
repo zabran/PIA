@@ -24,4 +24,5 @@ public interface UserManager {
 
 	User getUser(String name);
 
+	public boolean passwordMatches(User user, String password);
 }

@@ -1,0 +1,5 @@
+FROM adoptopenjdk:12-jre-openj9
+VOLUME /tmp
+EXPOSE 8080
+COPY pia.war app.war
+ENTRYPOINT ["java","-jar","/app.war"]
