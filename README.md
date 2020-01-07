@@ -1,10 +1,8 @@
 # PIA - zabran
 
-Nepodařilo se mi zprovoznit Docker, proto tu nejsou jeho soubory.
+Docker se nepodařilo na Windows otestovat s Docker-compose, ale soubory Dockerfile i Docker-compose by měly být funkční. Ve Windows jsou s Docker Toolbox podle všeho už tři roky problémy a nejde tam jednoduchým způsobem nastavit cesta u volume z místa na fyzickém disku.
 
-
-
-Role: 
+#Role: 
 
 USER - přihlášený uživatel, který nemá žádnou jinou roli. (O statními se vzájemně vylučuje. Ostatní role můžou být zároveň.)
 
@@ -16,7 +14,7 @@ ACCOUNTANT - účetní
 
 
 
-Entity:
+#Entity:
 
 Invoice (faktura) ukládá data company (společnosti) - je možné je vybrat. Ukládá však pouze jejich data.
 
@@ -26,7 +24,7 @@ Item je položkou invoice (počet, cena za kus s DPH a název). Původně měla 
 
 
 
-Detaily:
+#Detaily:
 
 Při editaci může být heslo necháno prázdné - pak se ponechává heslo staré.
 
@@ -36,7 +34,7 @@ Komentáře jsem ve většině míst vynechal, funkčnost vychází z názvů me
 
 
 
-Vyřešeno:
+#Vyřešeno:
 
 Nevyřešený přesný formát faktury - nikdy jsem nedělal nic v ekonomii, takže beru to spíš jako maketu. Faktura se nikde "netiskne", je jen uložená se všemi potřebnými údaji.
 
