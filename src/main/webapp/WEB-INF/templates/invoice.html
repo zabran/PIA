@@ -11,7 +11,7 @@
 		<p  class="error" th:text=${error}></p>
 		
 		<form action="#" th:action="@{/editinvoice}" th:object="${invoice}" method="post">
-			<table>
+			<table class="invoice">
 			<tr>
 				<td><input type="hidden" th:field="*{id}"></td>
 				<td><input type="hidden" th:field="*{orderNumber}"></td>

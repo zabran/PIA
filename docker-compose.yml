@@ -8,4 +8,4 @@ services:
        - "8080:8080"
      restart: always
      volumes:
-       - "./db:/root"
+       - "./db:/db"

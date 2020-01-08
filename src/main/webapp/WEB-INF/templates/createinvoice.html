@@ -11,7 +11,7 @@
 		<p  class="error" th:text=${error}></p>
 		
 		<form action="#" th:action="@{/createinvoice}" th:object="${invoice}" method="post">
-			<table>
+			<table class="invoice">
 			<tr>
 			
 				<td><label  for="received">1st Company is receiving: </label></td>

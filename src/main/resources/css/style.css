@@ -40,6 +40,19 @@ th{
 	padding-right: 0.15em;
 }
 
+@media (max-width:500px) {
+	
+        .invoice tr {    
+        display: table;  
+        width:100%;    
+        margin: 0 0 1rem 0;
+      	background: #ccc;
+        }               
+        .invoice td {    display: table-row; }      
+        .invoice th {	display: table-row;}     
+	
+}
+
 select {
 	justify-content: center;
 	font-size:calc(15px + 0.7vw);
